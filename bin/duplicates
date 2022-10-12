@@ -1,0 +1,100 @@
+#!/usr/bin/env ruby
+
+require 'gli'
+require 'duplicates'
+require 'digest'
+require 'set'
+
+class App
+  extend GLI::App
+
+  program_desc 'CLI application for work with duplicate files'
+
+  version Duplicates::VERSION
+
+  subcommand_option_handling :normal
+  arguments :strict
+
+  @checksums = Hash.new { |hash, key| hash[key] = [] }
+  @duplicates = Set[]
+
+  desc 'List duplicate files in directory'
+  arg_name 'Describe arguments to list here'
+  command :list do |c|
+    c.desc 'Search subdirectories?'
+    c.switch :recursive, default_value: true
+
+    c.desc 'Root path for search'
+    c.default_value '/Users/dominikbaluch/duplicatetests'
+    c.arg_name 'Root Path'
+    c.flag [:rootpath, 'root-path'], desc: 'Root path'
+
+    c.desc 'File mask for search'
+    c.default_value '*.css'
+    c.arg_name 'File mask'
+    c.flag [:filemask, 'file-mask'], desc: 'File mask'
+
+    c.action do |global_options, options, args|
+      files_pattern = options[:rootpath].clone(freeze: false )
+      files_pattern.concat('/')
+      files_pattern.concat('**/') if options[:recursive]
+      files_pattern.concat(options[:filemask].clone(freeze: false ))
+
+      Dir.glob(files_pattern).each do |file_path|
+        next unless File.file?(file_path)
+
+        group_duplicates(file_path)
+      end
+
+      @checksums.each do |_checksum, files = []|
+        next unless files.length > 1
+
+        compare_duplicates(_checksum, files)
+      end
+
+      @duplicates.each do |checksum|
+        puts "#{checksum} - [#{@checksums[checksum].join(', ')}]"
+      end
+    end
+  end
+
+  pre do |_global, _command, _options, _args|
+    true
+  end
+
+  post do |global, command, options, args|
+  end
+
+  on_error do |_exception|
+    puts _exception
+    exit
+  end
+
+  def self.group_duplicates(file_path)
+    md5 = Digest::MD5.file(file_path).hexdigest
+    @checksums[md5].push file_path
+  end
+
+  def self.compare_duplicates(checksum, files)
+    combinations = files.combination(2).to_a
+    combinations.each do |files_for_compare|
+      if file_duplicate?(File.open(files_for_compare[0]), File.open(files_for_compare[1]))
+        @duplicates.add?(checksum)
+        break
+      end
+    end
+  end
+
+  def self.file_duplicate?(first_file, second_file)
+    i = 0
+    File.read(first_file).each_byte do |b|
+      break if File.read(second_file).getbyte(i) != b
+
+      i += 1
+    end
+
+    File.read(first_file).length == i
+  end
+end
+
+exit App.run(ARGV)

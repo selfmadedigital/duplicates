@@ -1,0 +1,6 @@
+= duplicates
+
+Describe your project here
+
+:include:duplicates.rdoc
+

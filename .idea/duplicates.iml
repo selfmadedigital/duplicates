@@ -11,5 +11,45 @@
     </content>
     <orderEntry type="jdk" jdkName="rbenv: 3.1.2" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="ast (v2.4.2, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.3.23, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="gli (v2.21.0, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="json (v2.6.1, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.16.3, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="parallel (v1.22.1, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="parser (v3.1.2.1, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.1.1, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v0.9.6, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rdoc (v4.3.0, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.6.0, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rexml (v3.2.5, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.36.0, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.21.0, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.11.0, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v2.3.0, rbenv: 3.1.2) [gem]" level="application" />
+  </component>
+  <component name="RakeTasksCache">
+    <option name="myRootTask">
+      <RakeTaskImpl id="rake">
+        <subtasks>
+          <RakeTaskImpl description="Remove any temporary products" fullCommand="clean" id="clean" />
+          <RakeTaskImpl description="Remove any generated file" fullCommand="clobber" id="clobber" />
+          <RakeTaskImpl description="Remove package products" fullCommand="clobber_package" id="clobber_package" />
+          <RakeTaskImpl description="Remove RDoc HTML files" fullCommand="clobber_rdoc" id="clobber_rdoc" />
+          <RakeTaskImpl description="Build the gem file duplicates-0.0.1.gem" fullCommand="gem" id="gem" />
+          <RakeTaskImpl description="Build all the packages" fullCommand="package" id="package" />
+          <RakeTaskImpl description="Build RDoc HTML files" fullCommand="rdoc" id="rdoc" />
+          <RakeTaskImpl description="Force a rebuild of the package files" fullCommand="repackage" id="repackage" />
+          <RakeTaskImpl description="Rebuild RDoc HTML files" fullCommand="rerdoc" id="rerdoc" />
+          <RakeTaskImpl description="Run tests" fullCommand="test" id="test" />
+          <RakeTaskImpl description="" fullCommand="default" id="default" />
+          <RakeTaskImpl description="" fullCommand="html" id="html" />
+          <RakeTaskImpl description="" fullCommand="html/created.rid" id="html/created.rid" />
+          <RakeTaskImpl description="" fullCommand="pkg" id="pkg" />
+          <RakeTaskImpl description="" fullCommand="pkg/duplicates-0.0.1" id="pkg/duplicates-0.0.1" />
+          <RakeTaskImpl description="" fullCommand="pkg/duplicates-0.0.1.gem" id="pkg/duplicates-0.0.1.gem" />
+        </subtasks>
+      </RakeTaskImpl>
+    </option>
   </component>
 </module>

@@ -1,0 +1,5 @@
+= duplicates
+
+Generate this with
+    duplicates _doc
+After you have described your command line interface
